@@ -1,8 +1,6 @@
 name: docker build (web)
 
 on:
-  schedule:
-  - cron: "0 10 * * *"
   push:
     branches:
     - "**"
@@ -60,7 +58,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
-        context: src/web/
+        context: ui/
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.docker_meta.outputs.tags }}
         labels: ${{ steps.docker_meta.outputs.labels }}
